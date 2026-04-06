@@ -1,5 +1,3 @@
-// src/utils/validation.utils.ts
-
 export const validationRules = {
   email: {
     required: 'El correo electrónico es requerido.',

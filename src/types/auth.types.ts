@@ -1,5 +1,3 @@
-// src/types/auth.types.ts
-
 export type UserRole = 'ADMIN' | 'OPERATOR' | 'VIEWER';
 
 export interface LoginRequest {

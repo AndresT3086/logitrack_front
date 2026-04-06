@@ -1,6 +1,3 @@
-// src/services/auth.service.ts
-// Single Responsibility: only handles API calls for authentication.
-
 import axios, { AxiosError } from 'axios';
 import { AppConfig } from '../config/app.config';
 import { LoginRequest, LoginResponse, AuthError } from '../types/auth.types';

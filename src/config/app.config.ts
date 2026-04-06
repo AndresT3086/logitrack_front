@@ -1,7 +1,3 @@
-// src/config/app.config.ts
-// All environment variables are centralized here.
-// On Vercel, set these in: Project Settings → Environment Variables
-
 export const AppConfig = {
   api: {
     baseUrl: process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080',

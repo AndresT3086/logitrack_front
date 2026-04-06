@@ -1,5 +1,3 @@
-// src/components/auth/LoginForm.tsx
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { LoginRequest, AuthError } from '../../types/auth.types';

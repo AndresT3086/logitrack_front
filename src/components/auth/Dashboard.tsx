@@ -1,6 +1,3 @@
-// src/components/auth/Dashboard.tsx
-// Placeholder shown after successful login
-
 import React from 'react';
 import { LoginResponse } from '../../types/auth.types';
 

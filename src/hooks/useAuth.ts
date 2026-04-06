@@ -1,6 +1,3 @@
-// src/hooks/useAuth.ts
-// Encapsulates all authentication business logic away from UI components.
-
 import { useState, useCallback } from 'react';
 import { authService } from '../services/auth.service';
 import { LoginRequest, AuthState, AuthError } from '../types/auth.types';

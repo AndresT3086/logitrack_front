@@ -1,6 +1,3 @@
-// src/components/auth/LoginPage.tsx
-// Pure layout/composition component. No business logic here.
-
 import React from 'react';
 import { LoginForm } from './LoginForm';
 import { Dashboard } from './Dashboard';
