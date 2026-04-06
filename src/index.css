@@ -1,0 +1,480 @@
+/* src/index.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap');
+
+/* ─── Design Tokens ─────────────────────────────────────────────── */
+:root {
+  --bg:          #0b0f17;
+  --bg-card:     #111827;
+  --bg-input:    #1a2235;
+  --bg-hover:    #1f2d44;
+  --border:      #1e2d42;
+  --border-focus:#3b82f6;
+  --accent:      #3b82f6;
+  --accent-dim:  #1d4ed8;
+  --success:     #10b981;
+  --error:       #ef4444;
+  --warning:     #f59e0b;
+  --text-primary:#f1f5f9;
+  --text-secondary:#94a3b8;
+  --text-muted:  #475569;
+  --brand:       #0ea5e9;
+  --brand-glow:  rgba(14,165,233,0.2);
+
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --transition:  0.2s ease;
+  --font-ui:     'Syne', sans-serif;
+  --font-mono:   'Space Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Layout ─────────────────────────────────────────────────────── */
+.lgt-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+@media (max-width: 860px) {
+  .lgt-layout { grid-template-columns: 1fr; }
+  .lgt-panel--brand { display: none; }
+}
+
+/* ─── Brand Panel ─────────────────────────────────────────────────── */
+.lgt-panel--brand {
+  position: relative;
+  background: linear-gradient(135deg, #0a1628 0%, #0f1e38 50%, #071120 100%);
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-right: 1px solid var(--border);
+}
+
+.lgt-panel__brand-content {
+  position: relative;
+  z-index: 2;
+}
+
+.lgt-panel__grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.lgt-panel__cell {
+  border: 1px solid #60a5fa;
+}
+
+/* ─── Logo ─────────────────────────────────────────────────────────── */
+.lgt-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+  color: var(--brand);
+}
+
+.lgt-logo__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.lgt-logo__name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* ─── Brand Copy ──────────────────────────────────────────────────── */
+.lgt-panel__headline {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.lgt-panel__headline em {
+  font-style: normal;
+  color: var(--brand);
+}
+
+.lgt-panel__subtext {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 340px;
+  margin-bottom: 2.5rem;
+}
+
+/* ─── Features list ──────────────────────────────────────────────── */
+.lgt-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.lgt-features__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.lgt-features__icon {
+  font-size: 1.1rem;
+}
+
+/* ─── Form Panel ──────────────────────────────────────────────────── */
+.lgt-panel--form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--bg);
+}
+
+.lgt-panel__form-content {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ─── Form Header ────────────────────────────────────────────────── */
+.lgt-form-header {
+  margin-bottom: 2.5rem;
+}
+
+.lgt-form-header__title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.lgt-form-header__subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* ─── Form ───────────────────────────────────────────────────────── */
+.lgt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ─── Alert ──────────────────────────────────────────────────────── */
+.lgt-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  animation: slideIn 0.2s ease;
+}
+
+.lgt-alert--error {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.35);
+  color: #fca5a5;
+}
+
+.lgt-alert__icon { font-size: 1rem; flex-shrink: 0; }
+.lgt-alert__text { flex: 1; }
+
+.lgt-alert__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  opacity: 0.7;
+  padding: 0;
+}
+.lgt-alert__close:hover { opacity: 1; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Field ──────────────────────────────────────────────────────── */
+.lgt-field { display: flex; flex-direction: column; gap: 0.375rem; }
+
+.lgt-field__label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.lgt-field__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lgt-field__icon {
+  position: absolute;
+  left: 0.875rem;
+  color: var(--text-muted);
+  display: flex;
+  pointer-events: none;
+  transition: color var(--transition);
+}
+
+.lgt-field__input {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 2.75rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.lgt-field__input::placeholder { color: var(--text-muted); }
+
+.lgt-field__input:focus {
+  border-color: var(--border-focus);
+  background: var(--bg-hover);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+}
+
+.lgt-field__input:focus + .lgt-field__icon,
+.lgt-field__wrapper:focus-within .lgt-field__icon {
+  color: var(--accent);
+}
+
+.lgt-field--error .lgt-field__input {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+}
+
+.lgt-field--valid .lgt-field__input {
+  border-color: var(--success);
+}
+
+.lgt-field__error {
+  font-size: 0.78rem;
+  color: #fca5a5;
+  font-family: var(--font-mono);
+}
+
+.lgt-field__check {
+  position: absolute;
+  right: 0.875rem;
+  color: var(--success);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.lgt-field__toggle {
+  position: absolute;
+  right: 0.875rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  padding: 0;
+  transition: color var(--transition);
+}
+.lgt-field__toggle:hover { color: var(--text-secondary); }
+
+/* ─── Button ─────────────────────────────────────────────────────── */
+.lgt-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.9rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  border: none;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+}
+
+.lgt-btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.lgt-btn--primary:hover:not(:disabled) {
+  background: var(--accent-dim);
+  box-shadow: 0 0 20px rgba(59,130,246,0.35);
+  transform: translateY(-1px);
+}
+
+.lgt-btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.lgt-btn--primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.lgt-btn--outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  width: 100%;
+}
+
+.lgt-btn--outline:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
+/* Spinner */
+.lgt-btn__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Form hint ──────────────────────────────────────────────────── */
+.lgt-form__hint {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ─── Dashboard ──────────────────────────────────────────────────── */
+.lgt-dashboard {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  padding: 2rem;
+}
+
+.lgt-dashboard__card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  max-width: 440px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeUp 0.35s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lgt-dashboard__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--brand-glow);
+  border: 2px solid var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--brand);
+  margin-bottom: 0.5rem;
+}
+
+.lgt-dashboard__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.lgt-dashboard__email {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.lgt-dashboard__role {
+  display: inline-block;
+  padding: 0.35rem 0.875rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid;
+}
+
+.lgt-dashboard__token {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin: 0.5rem 0;
+}
+
+.lgt-dashboard__token-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.lgt-dashboard__token-value {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--success);
+  word-break: break-all;
+}
