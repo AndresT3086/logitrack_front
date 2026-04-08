@@ -31,7 +31,6 @@ logitrack-login/
 ├── tsconfig.json
 └── package.json
 ```
-
 ---
 
 ## Variables de entorno
